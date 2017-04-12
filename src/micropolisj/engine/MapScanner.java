@@ -529,12 +529,16 @@ class MapScanner extends TileBehavior
 	 */
 	void doTreehouse()
 	{
+		//first check the power of the zone, and add to the number of residential zones in the city
 		boolean powerOn = checkZonePower();
 		city.resZoneCount++;
 		
+		//get the tile spec and use it to get the population level on this treehouse tile
 		TileSpec ts = Tiles.get(tile);
 		int tpop = ts.getPopulation();
 		
+		//make traffic in the same way that traffic is made for residential areas, 
+		//using the pseudo-random number generator to not do it every single time
 		int trafficGood;
 		if (tpop > PRNG.nextInt(36)) {
 			trafficGood = makeTraffic(ZoneType.RESIDENTIAL);
@@ -542,6 +546,9 @@ class MapScanner extends TileBehavior
 			trafficGood = 1;
 		}
 		
+		//if the power is on, and if traffic can be created (people can go somewhere from treehouse)
+		//add population of the treehouse to the city's tree population, otherwise it is considered
+		//to not be inhabited
 		if (trafficGood != -1 && powerOn) {
 			city.treePop += tpop;
 		}

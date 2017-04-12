@@ -114,6 +114,7 @@ public class Micropolis
 	int comZoneCount;
 	int indZoneCount;
 	int resPop;
+	//variable to keep track of population in treehouses
 	int treePop;
 	int comPop;
 	int indPop;
@@ -525,6 +526,7 @@ public class Micropolis
 		roadTotal = 0;
 		railTotal = 0;
 		resPop = 0;
+		//clear tree population
 		treePop = 0;
 		comPop = 0;
 		indPop = 0;
@@ -2493,6 +2495,7 @@ public class Micropolis
 	void checkGrowth()
 	{
 		if (cityTime % 4 == 0) {
+			//now adds a tree population as well
 			int newPop = (resPop + comPop * 8 + indPop * 8 + treePop) * 20;
 			if (lastCityPop != 0) {
 				MicropolisMessage z = null;

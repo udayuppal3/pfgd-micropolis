@@ -1010,12 +1010,12 @@
 958   misc_animation@0,2096
 959   misc_animation@0,2112
 # BEGIN NEW BUILDING #
-960   new_building@0,0            (conducts)
-961   new_building@16,0           (conducts)
-962   new_building@32,0           (conducts)
-963   new_building@0,16           (conducts)
-964   new_building@16,16    (zone)(conducts)(building=3x3)(behavior=NEW_BUILDING)(description=#28)
-965   new_building@32,16          (conducts)
-966   new_building@0,32           (conducts)
-967   new_building@16,32          (conducts)
-968   new_building@32,32          (conducts)
+960   treehouse@0,0            (conducts)(pollution=-50)
+961   treehouse@16,0           (conducts)(pollution=-50)
+962   treehouse@32,0           (conducts)(pollution=-50)
+963   treehouse@0,16           (conducts)(pollution=-50)
+964   treehouse@16,16    (zone)(conducts)(building=3x3)(behavior=TREEHOUSE)(population=16)(pollution=-50)(description=#28)
+965   treehouse@32,16          (conducts)(pollution=-50)
+966   treehouse@0,32           (conducts)(pollution=-50)
+967   treehouse@16,32          (conducts)(pollution=-50)
+968   treehouse@32,32          (conducts)(pollution=-50)

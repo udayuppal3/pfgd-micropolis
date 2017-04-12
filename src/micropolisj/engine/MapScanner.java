@@ -42,7 +42,7 @@ class MapScanner extends TileBehavior
 		STADIUM_FULL,
 		AIRPORT,
 		SEAPORT,
-		NEW_BUILDING; //Placeholder enum for new building. Change to building name if making a new building
+		TREEHOUSE; //Placeholder enum for treehouse. Change to building name if making a new building
 	}
 
 	@Override
@@ -85,8 +85,8 @@ class MapScanner extends TileBehavior
 		case SEAPORT:
 			doSeaport();
 			return;
-		case NEW_BUILDING:
-			doNewBuilding(); //Call the NEW_BUILDING placeholder function
+		case TREEHOUSE:
+			doTreehouse(); //Call the TREEHOUSE placeholder function
 			return;
 		default:
 			assert false;
@@ -206,17 +206,6 @@ class MapScanner extends TileBehavior
 		}
 
 		city.powerPlants.add(new CityLocation(xpos, ypos));
-	}
-	
-	//Placeholder for a new building
-	//Look to the other do<building name>() functions to guidance on what this function should do.
-	void doNewBuilding()
-	{
-		//Very basic building functionality. Checks for power and does "repair"
-		boolean powerOn = checkZonePower();
-		if ((city.cityTime % 8) == 0) {
-			repairZone(NEW_BUILDING, 3);
-		}
 	}
 
 	void doFireStation()
@@ -535,6 +524,30 @@ class MapScanner extends TileBehavior
 		}
 	}
 
+	/**
+	 * Called when the current tile is the key tile of a treehouse zone
+	 */
+	void doTreehouse()
+	{
+		boolean powerOn = checkZonePower();
+		city.resZoneCount++;
+		
+		TileSpec ts = Tiles.get(tile);
+		int tpop = ts.getPopulation();
+		
+		int trafficGood;
+		if (tpop > PRNG.nextInt(36)) {
+			trafficGood = makeTraffic(ZoneType.RESIDENTIAL);
+		} else {
+			trafficGood = 1;
+		}
+		
+		if (trafficGood != -1 && powerOn) {
+			city.treePop += tpop;
+		}
+		
+	}
+	
 	/**
 	 * Called when the current tile is the key tile of a
 	 * residential zone.

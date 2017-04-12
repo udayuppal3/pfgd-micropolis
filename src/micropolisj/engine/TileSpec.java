@@ -146,6 +146,7 @@ public class TileSpec
 			return Integer.parseInt(v);
 		}
 		else {
+			System.out.println("fail");
 			return 0;
 		}
 	}

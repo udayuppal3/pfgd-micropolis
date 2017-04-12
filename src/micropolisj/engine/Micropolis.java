@@ -114,6 +114,7 @@ public class Micropolis
 	int comZoneCount;
 	int indZoneCount;
 	int resPop;
+	int treePop;
 	int comPop;
 	int indPop;
 	int hospitalCount;
@@ -524,6 +525,7 @@ public class Micropolis
 		roadTotal = 0;
 		railTotal = 0;
 		resPop = 0;
+		treePop = 0;
 		comPop = 0;
 		indPop = 0;
 		resZoneCount = 0;
@@ -1461,7 +1463,7 @@ public class Micropolis
 		bb.put("INDUSTRIAL", new MapScanner(this, MapScanner.B.INDUSTRIAL));
 		bb.put("COAL", new MapScanner(this, MapScanner.B.COAL));
 		bb.put("NUCLEAR", new MapScanner(this, MapScanner.B.NUCLEAR));
-		bb.put("NEW_BUILDING", new MapScanner(this, MapScanner.B.NEW_BUILDING));
+		bb.put("TREEHOUSE", new MapScanner(this, MapScanner.B.TREEHOUSE));
 		bb.put("FIRESTATION", new MapScanner(this, MapScanner.B.FIRESTATION));
 		bb.put("POLICESTATION", new MapScanner(this, MapScanner.B.POLICESTATION));
 		bb.put("STADIUM_EMPTY", new MapScanner(this, MapScanner.B.STADIUM_EMPTY));
@@ -2491,7 +2493,7 @@ public class Micropolis
 	void checkGrowth()
 	{
 		if (cityTime % 4 == 0) {
-			int newPop = (resPop + comPop * 8 + indPop * 8) * 20;
+			int newPop = (resPop + comPop * 8 + indPop * 8 + treePop) * 20;
 			if (lastCityPop != 0) {
 				MicropolisMessage z = null;
 				if (lastCityPop < 500000 && newPop >= 500000) {
